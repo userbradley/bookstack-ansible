@@ -1,0 +1,17 @@
+#Database stuff
+mysql_root_password: "ChangeMe"
+mysql_db: "bookstack"
+mysql_user: "boockstack"
+mysql_password: "BrosDontLetBrosUseTheDefaultPasswordBro"
+
+#Setup stuff for bookstack and nginx
+url: "bookstack.example.com" #URL of your bookstack instance, like bookstack.breadnet.co.uk
+domain: "example.com" #your domain, like breadnet.co.uk 
+bookstack_name: "jeff" #Give your bookstack a name, call it jeff
+
+#Bookstack mail specifics 
+mail_driver: "" #can be smtp, mail or sendmail
+mail_server: "" #IP address of your mail server or hostname, or local host
+mail_port: "25" #usually 25 but can differ 
+mail_username: "" #name you use to login to the mails erver
+mail_password: "" #Password you use to login to the server
