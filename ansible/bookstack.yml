@@ -1,0 +1,92 @@
+#88888888ba                                    88  88                           
+#88      "8b                                   88  88                           
+#88      ,8P                                   88  88                           
+#88aaaaaa8P'  8b,dPPYba,  ,adPPYYba,   ,adPPYb,88  88   ,adPPYba,  8b       d8  
+#88""""""8b,  88P'   "Y8  ""     `Y8  a8"    `Y88  88  a8P_____88  `8b     d8'  
+#88      `8b  88          ,adPPPPP88  8b       88  88  8PP"""""""   `8b   d8'   
+#88      a8P  88          88,    ,88  "8a,   ,d88  88  "8b,   ,aa    `8b,d8'    
+#88888888P"   88          `"8bbdP"Y8   `"8bbdP"Y8  88   `"Ybbd8"'      Y88'     
+#
+#
+#                                                                            88           88             
+#                                              ,d                     ,d     88           ""             
+#                                              88                     88     88                          
+#8b      db      d8  8b,dPPYba,   ,adPPYba,  MM88MMM  ,adPPYba,     MM88MMM  88,dPPYba,   88  ,adPPYba,  
+#`8b    d88b    d8'  88P'   "Y8  a8"     "8a   88    a8P_____88       88     88P'    "8a  88  I8[    ""  
+# `8b  d8'`8b  d8'   88          8b       d8   88    8PP"""""""       88     88       88  88   `"Y8ba,   
+#  `8bd8'  `8bd8'    88          "8a,   ,a8"   88,   "8b,   ,aa       88,    88       88  88  aa    ]8I  
+#    YP      YP      88           `"YbbdP"'    "Y888  `"Ybbd8"'       "Y888  88       88  88  `"YbbdP"'  
+
+
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Install prerequisites
+      apt: name=aptitude update_cache=yes state=latest force_apt_get=yes
+    
+    - name: Install Nginx web server
+      become: true
+      apt:
+        name: nginx
+        state: latest
+
+    - name: Install Mysql server
+      apt: name=mysql-server update_cache=yes state=latest force_apt_get=yes
+
+    - name: Install the Python MySQLB module 
+      apt: name=python3-mysqldb
+    
+    - name: Add PHP repository 
+      become: true
+      apt_repository:
+        repo: 'ppa:ondrej/php'
+    - name: Run the equivalent of "apt-get update" as a separate step
+      apt:
+       update_cache: yes
+    - name: Add PHP 7 PPA repository
+      become: true
+      apt_repository:
+        repo: 'ppa:ondrej/php'
+    - name: Install PHP packages
+      become: true
+      apt:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - php7.1-cli
+        - php7.1-curl
+        - php7.1-fpm
+        - php7.1-intl
+        - php7.1-mysql
+        - php7.1-common
+        - php7.1-xml
+#        - php7.1-zi
+        - php7.1-tidy
+        - php7.1-mcrypt
+        - php7.1-xmlrpc
+        - php7.1-mbstring
+        - php7.1-gd
+#    - name: Install PHP packages
+#      become: true
+#      apt: 
+#        name: "{{ item }}"
+#        state: latest
+#      with_items:
+#        #- php7.1-sqlite
+#        
+#        
+#         
+#        
+#        
+#        - php7.1-tidy
+
+##p
+#things that need to be installed
+#nginx 
+#mariadb-server mariadb-client
+#install software-properties-common
+#add repos: ppa:ondrej/php
+#install php7.1-fpm php7.1-common php7.1-sqlite php7.1-curl php7.1-intl php7.1-mbstring php7.1-xmlrpc php7.1-mysql php7.1-gd \
+#php7.1-xml php7.1-cli php7.1-mcrypt php7.1-tidy php7.1-zip 
