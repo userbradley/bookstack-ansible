@@ -42,13 +42,11 @@
       become: true
       apt_repository:
         repo: 'ppa:ondrej/php'
+        
     - name: Run the equivalent of "apt-get update" as a separate step
       apt:
        update_cache: yes
-    - name: Add PHP 7 PPA repository
-      become: true
-      apt_repository:
-        repo: 'ppa:ondrej/php'
+
     - name: Install PHP packages
       become: true
       apt:
@@ -62,31 +60,14 @@
         - php7.1-mysql
         - php7.1-common
         - php7.1-xml
-#        - php7.1-zi
         - php7.1-tidy
         - php7.1-mcrypt
         - php7.1-xmlrpc
         - php7.1-mbstring
         - php7.1-gd
-#    - name: Install PHP packages
-#      become: true
-#      apt: 
-#        name: "{{ item }}"
-#        state: latest
-#      with_items:
-#        #- php7.1-sqlite
-#        
-#        
-#         
-#        
-#        
-#        - php7.1-tidy
 
-##p
-#things that need to be installed
-#nginx 
-#mariadb-server mariadb-client
-#install software-properties-common
-#add repos: ppa:ondrej/php
-#install php7.1-fpm php7.1-common php7.1-sqlite php7.1-curl php7.1-intl php7.1-mbstring php7.1-xmlrpc php7.1-mysql php7.1-gd \
-#php7.1-xml php7.1-cli php7.1-mcrypt php7.1-tidy php7.1-zip 
+    - name: Install problematic PHP packages that dont want to install from above
+      apt: name ={{ item }} update_cache=yes state=latest
+      loop: ['php7.1-sqlite', 'php7.1-zi']
+      tags: [system]
+      
