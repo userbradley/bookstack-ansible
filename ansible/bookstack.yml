@@ -216,33 +216,11 @@
       shell: php /var/www/Bookstack/artisan migrate --force
       tags: [migrate]
 
-   # - name: Recursively change ownership of a directory
-   #   file:
-   #     path: "/var/www/Bookstack"
-   #     state: directory
-   #     recurse: yes
-   #     owner: www-data
-   #     group: www-date
-   #     become: true
-        
-
-   # - name: Ensure directories are 755
-    #  command: find /var/www/Bookstack -type d -exec chmod 755 {} \;
-    #  tags: [janky]
-
-    #- find:
-    #    path: /var/www/Bookstack
-    #    file_type: file
-    #    recurse: yes
-    #  register: find_result
-    #  tags: [jank]
     - file:
         path: "/var/www/Bookstack"
         recurse: yes
         owner: www-data
         group: www-data
-       # mode: 0444
-      #with_items: "{{ find_result.files }}"
       tags: [jank1]
 
     - name: Set up nginx config file
@@ -251,21 +229,12 @@
         dest: "/etc/nginx/sites-available/{{ url }}"
       tags: [file]
 
-   # - name: Touch a file ;)
-   #   file:
-   #     path: /etc/nginx/sites-enabled/{{ url }}
-   #     state: touch 
-   #   tags: [fileconf] 
+
     - name: Create a symbolic link
-      #file:
-       #src: "/etc/nginx/sites-available/{{ url }}"
-       #dest: "/etc/nginx/sites-enabled/{{ url }}"
       file: 
         src=/etc/nginx/sites-available/{{ url }} 
         dest=/etc/nginx/sites-enabled/{{ url }} 
         state=link
-      #owner: foo
-      #group: foo
       state: link
       tags: [fileconf]
      

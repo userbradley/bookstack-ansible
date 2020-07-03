@@ -18,6 +18,6 @@ resource "google_compute_instance" "bookstack_instance1" {
     }
   }
     metadata = {
-  ssh-keys = "stannardb:${file("id_rsa.pub")}"
+  ssh-keys = "username:${file("id_rsa.pub")}"
 }
 }
