@@ -14,6 +14,7 @@ This project will allow you to spin up a Bookstack instance for around $3 per mo
 [how to instal terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) 
 
  [how to install ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) 
+
  If my instructions are really that bad, you can find a youtube video.
 # How to use
 
