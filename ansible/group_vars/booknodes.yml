@@ -8,6 +8,7 @@ mysql_password: "BrosDontLetBrosUseTheDefaultPasswordBro"
 url: "bookstack.example.com" #URL of your bookstack instance, like bookstack.breadnet.co.uk
 domain: "example.com" #your domain, like breadnet.co.uk 
 bookstack_name: "jeff" #Give your bookstack a name, call it jeff
+protocal: "http" #http or https
 
 #Bookstack mail specifics 
 mail_driver: "" #can be smtp, mail or sendmail
