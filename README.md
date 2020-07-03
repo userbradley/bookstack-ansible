@@ -80,7 +80,7 @@ Now that we have the node, we can create the actual fluff.
 
 Change directory to the ansible folder 
 ```
-cd ../ansible`
+cd ../ansible
 ```
 Assuming you were in the terraform folder
 
