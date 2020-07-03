@@ -5,15 +5,15 @@ Technically speaking this is just me playing around with terraform and ansible a
 
 This project will allow you to spin up a Bookstack instance for around $3 per month, but google will shutdown the vm instance randomly as it is preemtible. You can just write a healthcheck script for that.
 
-# what you will need
+# What you will need
 
  - [ ] Terraform on your computer
  - [ ] ansible on your computer
  - [ ] ability to read my jumbled mess
 
-[how to instal terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) 
+[How to install Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) 
 
- [how to install ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) 
+ [How to install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) 
 
  If my instructions are really that bad, you can find a youtube video.
 # How to use
@@ -22,11 +22,11 @@ Clone this to your computer
 ```
 git clone https://github.com/userbradley/bookstack-ansible.git 
 ```
-# something to know
+# Something to know
 You dont need to use terraform for this. You can just create a digital ocean droplet, a linode vm, a we definitely wont spy on your data vm on tencent cloud, or alibaba cloud if you fancy sharing your KB articles with china. Your choice.
-If you chose not to use terraform, skip to `How to ansible this` 
+If you chose not to use terraform, skip to `How to Ansible this` 
 
-# terraform route
+# Terraform route
 Now that you have this downloaded, you will want to create a GCP account. Just go to cloud.google.com and sign up. You should be able to get a free tier. It usually lasts a year of to $300, which ever comes first.
 
 Once there, you will need to create a service account by clicking the 3 lines at the top left, scroll down to `Iam & admin` then click service accounts. 
@@ -54,7 +54,7 @@ If you're lazy (like me) and dont want to type `yes`
 echo "yes" | terraform apply
 ```
 
-It will spin up an ubuntu VM in `us-central1-c` if memory servers correctly.
+It will spin up an ubuntu VM in `us-central1-c` if memory serves correctly.
 
 if you want to spin one up closer to home, check [here](https://bookstack.breadnet.co.uk/books/automation/page/building-infrastructure-9b8) where I have a list of regions and their locations. Probably better to use google's official page. 
 
@@ -74,7 +74,7 @@ Click `compute engine` from the nav bar, click your instance name, scroll down t
 On the left, click`firewall` and `CREATE FIREWALL RULE` 
 Name it `allow http`, targets `apply to all` and then ip filter is `0.0.0.0/0` and select tcp then type `80,443` and then save
 
-# How to ansible this
+# How to Ansible this
 
 Now that we have the node, we can create the actual fluff. 
 
@@ -139,15 +139,15 @@ Where `-l` is the host name under the `hosts` file, `-i` tells ansible what inve
 
 Once it's done, you will need to add a DNS record pointing to the GCP compute node and then open http://<your bookstack> and login with `admin@admin.com` and the password being `password`
 
-# if anything is wrong
+# If anything is wrong
 Please make a pull request if anything is messed up, or open an issue if you need help.
 
-# to do
+# To do
 
  - [ ] Add ability to use nginx basic auth
  - [ ] Add ability to run certbot to get free LE certificate
  - [ ] Add ability to create UFW rules
  - [ ] Create monitor script to restart the node if it goes down
  - [ ] Add a backup script that dumps the database as a cronjob
- - [ ] Learn to write choerent sentances 
+ - [ ] Learn to write choerent sentences 
 
