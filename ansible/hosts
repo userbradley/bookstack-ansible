@@ -1,0 +1,14 @@
+#Hosts should be in the order of:
+# Human readable name then ansible_host=<ip>
+#for example
+# Bookstack1 ansible_host=256.250.25.269
+
+[booknodes]
+#Place servers below
+bookstack ansible_host=<ip/ hostname>
+
+
+
+#Making sure to use python3
+[booknodes:vars]
+ansible_python_interpreter=/usr/bin/python3
